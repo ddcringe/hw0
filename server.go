@@ -9,6 +9,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	defer listener.Close()
+
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
@@ -16,6 +18,7 @@ func main() {
 		}
 		go handleConnection(conn)
 	}
+
 }
 
 func handleConnection(conn net.Conn) {
